@@ -1,0 +1,22 @@
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">Phone</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      {{#if isHome}}
+        <li class="active"><a href="/">Home page</a></li>
+      {{else}}
+        <li><a href="/">Home page</a></li>
+      {{/if}}
+      {{#if isPhone}}
+        <li class="active"><a href="/phones">Phone</a></li>
+      {{else}}
+        <li><a href="/phones">Phone</a></li>
+      {{/if}}
+      {{#if isAdd}}
+      <li class="active"><a href="/add">Add page</a></li>
+      {{else}}
+      <li><a href="/add">Add page</a></li>
+      {{/if}}
+    </ul>
+  </div>
+</nav>
