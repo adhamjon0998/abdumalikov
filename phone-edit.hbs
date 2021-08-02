@@ -1,0 +1,24 @@
+<h1>Edit {{phone.title}}</h1>
+<form action="/phones/edit" method="POST">
+    <div class="input-field col s6">
+        <input id="model" name="model" type="text" class="validate" required value="{{phone.model}}">
+        <label for="model">Model</label>
+        <span class="helper-text" data-error="add model" ></span>
+    </div>
+
+     <div class="input-field col s6">
+          <input id="price" name="price" type="text" class="validate" required min="1" value="{{phone.price}}">
+          <label for="price">Price</label>
+          <span class="helper-text" data-error="add price" ></span>
+        </div>
+
+         <div class="input-field col s6">
+          <input id="img" name="img" type="text" class="validate" required value="{{phone.img}}">
+          <label for="img">img</label>
+          <span class="helper-text" data-error="add img" ></span>
+        </div>
+
+        <input type="hidden" name="id" value="{{phone.id}}">
+
+        <button class="btn btn-primary">Edit phone</button>
+</form>
