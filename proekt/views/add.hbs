@@ -1,0 +1,20 @@
+<h1>{{title}}</h1>
+
+<form action="/add" method="POST">
+    <div class="input-field col s6">
+        <input id="model" name="model" type="text" class="validate" required>
+        <label for="model">Model</label>
+         <span class="helper-text" data-error="wrong"></span>
+    </div>
+    <div class="input-field col s6">
+        <input id="price" name="price" type="number" min="1" class="validate" required>
+        <label for="price">Price</label>
+         <span class="helper-text" data-error="wrong"></span>
+    </div>
+    <div class="input-field col s6">
+        <input id="img" type="text" name="img" class="validate" required>
+        <label for="img">Img</label>
+         <span class="helper-text" data-error="wrong"></span>
+    </div>
+    <button class="btn btn-primary">Send</button>
+</form>

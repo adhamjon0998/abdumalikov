@@ -1,0 +1,22 @@
+<h1>Edit page</h1>
+
+<form action="/crosses/edit" method="POST">
+    <div class="input-field col s6">
+        <input id="model" name="model" type="text" class="validate" required value="{{cros.model}}">
+        <label for="model">Model</label>
+         <span class="helper-text" data-error="wrong"></span>
+    </div>
+    <div class="input-field col s6">
+        <input id="price" name="price" type="number" min="1" class="validate" required value="{{cros.price}}">
+        <label for="price">Price</label>
+         <span class="helper-text" data-error="wrong"></span>
+    </div>
+    <div class="input-field col s6">
+        <input id="img" type="text" name="img" class="validate" required value="{{cros.img}}">
+        <label for="img">Img</label>
+         <span class="helper-text" data-error="wrong"></span>
+    </div>
+
+    <input type="hidden" name="id" value="{{cros.id}}">
+    <button class="btn btn-primary">Edit</button>
+</form>
