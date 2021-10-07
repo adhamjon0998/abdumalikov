@@ -5,8 +5,7 @@ const homeSchema = new Schema({
         required: true
     },
     img: {
-        type: String,
-        required: true
+        type: String
     }
 })
 

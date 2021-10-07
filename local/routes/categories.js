@@ -3,6 +3,7 @@ const router = Router()
 const Category = require('../models/Category')
 const fileMiddleware = require('../middleware/file')
 const toDelete = require('../middleware/toDelete')
+const mongoose = require('mongoose')
 
 router.get('/categories', async (req, res) => {
     const categories = await Category.find()
@@ -10,6 +11,31 @@ router.get('/categories', async (req, res) => {
         layout: 'admin',
         categories
     })
+})
+
+router.get('/categories/:id', async (req, res) => {
+    const products = await Category.aggregate([
+        {
+            $match: {
+                _id: mongoose.Types.ObjectId(req.params.id)
+
+            }
+        },
+        {
+            $lookup: {
+                from: 'products',
+                localField: '_id',
+                foreinField: 'categoryId',
+                as: 'products'
+            }
+        }
+    ])
+
+    res.send(products)
+    // res.render('admin/categories', {
+    //     layout: 'admin',
+    //     categories
+    // })
 })
 
 router.get('/categories/add', (req, res) => {
@@ -43,10 +69,14 @@ router.get('/category/edit/:id', fileMiddleware.single('img'), async (req, res) 
 
 router.post('/category/edit/:id', fileMiddleware.single('img'), async (req, res) => {
     const { img } = await Category.findById(req.params.id)
-    toDelete(img)
     const admin = req.body
-    admin.img = req.file.filename
-    console.log(admin);
+    if (req.file) {
+        admin.img = req.file.filename
+        toDelete(img)
+
+    } else {
+        admin.img = img
+    }
     await Category.findByIdAndUpdate(req.params.id, admin, (err) => {
         if (err) {
             console.log(err);
@@ -54,6 +84,13 @@ router.post('/category/edit/:id', fileMiddleware.single('img'), async (req, res)
             res.redirect('/admin/categories')
         }
     })
+})
+
+router.get('/category/delete/:id', async (req, res) => {
+    const { img } = await Category.findById(req.params.id)
+    toDelete(img)
+    await Category.findByIdAndDelete(req.params.id)
+    res.redirect('/admin/categories')
 })
 
 module.exports = router

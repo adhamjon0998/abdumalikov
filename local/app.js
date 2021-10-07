@@ -7,7 +7,7 @@ const adminRouter = require('./routes/admin')
 const indexRouter = require('./routes/index');
 const categoriesRouter = require('./routes/categories')
 const homeRouter = require('./routes/home')
-const adhamRouter = require('./routes/adham')
+const productsRouter = require('./routes/products')
 const app = express();
 
 // view engine setup
@@ -33,7 +33,7 @@ app.use('/', indexRouter);
 app.use('/admin', adminRouter)
 app.use('/admin', categoriesRouter)
 app.use('/admin', homeRouter)
-app.use('/admin', adhamRouter)
+app.use('/admin', productsRouter)
 
 
 async function start() {
